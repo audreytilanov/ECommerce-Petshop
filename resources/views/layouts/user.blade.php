@@ -95,10 +95,22 @@
                                 <li><a href="about.html">About</a></li>
                                 <li>
                                     <div class="header-icons">
+                                        @if(!empty(Auth::guard('web')->user()->id))
+        
                                         @livewire('add-cart')
+                                        @endif
                                         <a class="shopping-cart" href="{{ route('user.history.transaction.index') }}"><i class="fas fa-credit-card"></i></a>
                                         <a class="shopping-cart" href="{{ route('user.notification') }}"><i class="fas fa-bell"></i></a>
                                         <a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+                                        @if(empty(Auth::guard('web')->user()->id))
+                                        <a class="shopping-cart" href="{{ route('user.login') }}"><i class="fas fa-user"></i></a>
+                                        @else
+                                        <form style="display: inline" action="{{ route('user.logout') }}" method="post">
+                                            @csrf
+                                            <button class="shopping-cart" style="background: transparent;color:white;border:none;" id="btn-submit" type="submit"><i class="fas fa-sign-out-alt"></i></button>
+                                        </form>
+
+                                        @endif
                                     </div>
                                 </li>
                             </ul>

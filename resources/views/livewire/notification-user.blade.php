@@ -1,4 +1,4 @@
-<div>
+<div wire:poll>
 <a class="buy-btn"  href="javascript:void(0)" wire:click="markall">Mark As Read</a>
 @foreach ($notification as $datas)
     <div class="alert alert-success" role="alert">

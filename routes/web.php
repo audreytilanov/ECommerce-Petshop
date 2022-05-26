@@ -44,9 +44,10 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // pvb = Prevent Back History
 Route::name('user.')->group(function(){
+    Route::get('/home', [UserController::class, 'index'])->name('home');
     Route::middleware(['guest:web', 'pvb'])->group(function(){
         Route::view('/login', 'user.auth.login')->name('login');
         Route::view('/register', 'user.auth.register')->name('register');
@@ -54,11 +55,13 @@ Route::name('user.')->group(function(){
         Route::post('/account/check', [UserLoginController::class, 'check'])->name('check');
         Route::get('/account/verify', [UserLoginController::class, 'verifyEmail'])->name('verify');
         Route::view('/account/reset/password', 'auth.passwords.email')->name('resetpassword');
+
+    });
+    Route::middleware(['auth:web'])->group(function(){
+        Route::post('/logout', [UserLoginController::class, 'logout'])->name('logout');
     });
     
     Route::middleware(['auth:web', 'IsUserVerified', 'pvb'])->group(function(){
-        Route::get('/home', [UserController::class, 'index'])->name('home');
-        Route::post('/account/logout', [UserLoginController::class, 'logout'])->name('logout');
 
         Route::prefix('shop')->name('shop.')->group(function(){
             Route::get('/',[ShopController::class, 'index'])->name('index');

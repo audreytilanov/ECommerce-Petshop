@@ -1,4 +1,4 @@
-<div>
+<div wire:poll>
     <div class="dropdown-content-heading">
         <span class="text-left">{{ $notificationCount }} New Messages</span>
         <a href="javascript:void(0)" wire:click="markall">
@@ -26,6 +26,10 @@
         </ul>
     </div>
 </div>
+
+<script>
+    Livewire.emit('user_notif')
+</script>
 
 {{-- <li class="notification-unread">
     <a href="#" wire:click="markasread({{ $data->id }})">

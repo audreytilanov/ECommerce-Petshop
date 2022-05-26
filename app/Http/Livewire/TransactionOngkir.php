@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Cart;
 use App\Models\City;
+use App\Models\Admin;
 use App\Models\Courier;
 use App\Models\Product;
 use Livewire\Component;
@@ -13,7 +14,9 @@ use Illuminate\Support\Carbon;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\AdminNotification;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
+use Illuminate\Support\Facades\Notification;
 
 class TransactionOngkir extends Component
 {
@@ -158,7 +161,11 @@ class TransactionOngkir extends Component
                 'selling_price' => $data->price * $this->singleQty
             ]);
         }
-        
+        $user = Admin::all();
+        $message = "Transaksi Baru dari" . Auth::guard('web')->user()->name . "";
+        Notification::send($user, new AdminNotification($message));
+
+        toast('Thank You For Your Review','success');
         // dd($idTransactionLast);
         
         

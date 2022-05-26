@@ -9,6 +9,8 @@ use App\Notifications\UserNotification;
 
 class NotificationUser extends Component
 {
+    protected $listeners = ['user_notif' => 'render'];
+
     public function render()
     {
         $notification = Auth::guard('web')->user()->notifications->where('read_at', null);

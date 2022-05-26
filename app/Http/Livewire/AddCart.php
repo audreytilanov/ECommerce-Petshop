@@ -11,7 +11,10 @@ class AddCart extends Component
     protected $listeners = ['cart_add' => 'render'];
     public function render()
     {
-        $count = Cart::where('user_id', '=', Auth::guard('web')->user()->id)->count();
-        return view('livewire.add-cart', compact('count'));
+        if(!empty(Auth::guard('web')->user()->id)){
+            $count = Cart::where('user_id', '=', Auth::guard('web')->user()->id)->count();
+            return view('livewire.add-cart', compact('count'));
+        }
+        
     }
 }

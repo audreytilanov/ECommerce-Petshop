@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Response;
 use Illuminate\Http\Request;
 use App\Models\ProductReview;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\UserNotification;
+use Illuminate\Support\Facades\Notification;
 
 class ReviewController extends Controller
 {
@@ -27,6 +30,12 @@ class ReviewController extends Controller
             'review_id' => $id,
             'content' => $request->reply
         ]);
+        $data = ProductReview::find($id);
+        $user = User::find($data->user_id);
+        $message = "Balas dari Admin";
+
+        Notification::send($user, new UserNotification($message));
+        // $this->emit('cart_add');
 
         toast('Balasan telah dikirim','success');
         return redirect()->route('admin.review.index');
