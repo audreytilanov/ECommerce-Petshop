@@ -143,9 +143,11 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
-                                                    <i class="ti-power-off"></i>
-                                                    <span>Logout</span>
+                                                <a href="#" onclick="document.getElementById('adminlogout').submit();"><i class="ti-power-off"></i>
+                                                <form id="adminlogout" style="display: inline" action="{{ route('admin.logout') }}" method="post">
+                                                    @csrf
+                                                </form>
+                                                Logout
                                                 </a>
                                             </li>
                                         </ul>

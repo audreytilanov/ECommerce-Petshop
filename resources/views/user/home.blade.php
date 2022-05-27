@@ -10,11 +10,11 @@
                 <div class="col-md-12 col-lg-7 offset-lg-1 offset-xl-0">
                     <div class="hero-text">
                         <div class="hero-text-tablecell">
-                            <p class="subtitle">Fresh & Organic</p>
-                            <h1>Delicious Seasonal Fruits</h1>
+                            <p class="subtitle">Petshop | Food</p>
+                            <h1>Delicious Food for Cat</h1>
                             <div class="hero-btns">
-                                <a href="shop.html" class="boxed-btn">Fruit Collection</a>
-                                <a href="contact.html" class="bordered-btn">Contact Us</a>
+                                <a href="shop.html" class="boxed-btn">Food Collection</a>
+                                <a href="contact.html" class="bordered-btn">About Us</a>
                             </div>
                         </div>
                     </div>

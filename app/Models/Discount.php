@@ -14,7 +14,7 @@ class Discount extends Model
         'start',
         'end'
     ];
-
+    
     public function products(){
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
